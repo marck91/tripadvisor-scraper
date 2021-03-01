@@ -16,7 +16,7 @@ function getHours(placeInfo) {
 
     return placeInfo.hours.week_ranges.map(wR => wR.map(day => ({ open: day.open_time, close: day.close_time })));
 }*/
-/*
+
 function getAncestor(placeInfo, ancestorKey) {
     const placeHolder = '';
 
@@ -35,7 +35,7 @@ function getAncestor(placeInfo, ancestorKey) {
     }
 
     return placeHolder;
-}*/
+}
 
 
 async function processRestaurant(placeInfo, client, dataset) {

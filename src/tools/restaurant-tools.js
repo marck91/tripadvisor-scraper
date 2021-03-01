@@ -2,7 +2,7 @@ const Apify = require('apify');
 
 const { utils: { log } } = Apify;
 const { getReviews, getReviewTags } = require('./general');
-
+/*
 function getHours(placeInfo) {
     const placeHolder = [];
 
@@ -15,7 +15,7 @@ function getHours(placeInfo) {
     }
 
     return placeInfo.hours.week_ranges.map(wR => wR.map(day => ({ open: day.open_time, close: day.close_time })));
-}
+}*/
 
 function getAncestor(placeInfo, ancestorKey) {
     const placeHolder = '';
@@ -59,6 +59,8 @@ async function processRestaurant(placeInfo, client, dataset) {
         rankingPosition: placeInfo.ranking_position,
         priceLevel: placeInfo.price_level,
         category: placeInfo.ranking_category,
+        subcategory: placeInfo.subcategory && placeInfo.subcategory.map(subcategory => subcategory.key),
+        dishes: placeInfo.dishes && placeInfo.dishes.map(dishes => dishes.key),
         rating: placeInfo.rating,
         isClosed: placeInfo.is_closed,
         isLongClosed: placeInfo.is_long_closed,
@@ -67,7 +69,7 @@ async function processRestaurant(placeInfo, client, dataset) {
         email: placeInfo.email,
         cuisine: placeInfo.cuisine && placeInfo.cuisine.map(cuisine => cuisine.name),
         mealTypes: placeInfo.mealTypes && placeInfo.mealTypes.map(m => m.name),
-        hours: getHours(placeInfo),
+        //hours: getHours(placeInfo),
         latitude: placeInfo.latitude,
         longitude: placeInfo.longitude,
         webUrl: placeInfo.web_url,
@@ -75,8 +77,14 @@ async function processRestaurant(placeInfo, client, dataset) {
         numberOfReviews: placeInfo.num_reviews,
         rankingDenominator: placeInfo.ranking_denominator,
         rankingString: placeInfo.ranking,
+        street: placeInfo.address_obj.street1,
         municipality: getAncestor(placeInfo, 'municipality'),
+        city: placeInfo.address_obj.city,
+        postCode: placeInfo.address_obj.postalcode,
         province: getAncestor(placeInfo, 'province'),
+        region: getAncestor(placeInfo, 'region'),
+        state: placeInfo.address_obj.state,
+        country: placeInfo.address_obj.country,
         reviews,
     };
     if (global.INCLUDE_REVIEW_TAGS) {

@@ -77,7 +77,7 @@ async function processRestaurant(placeInfo, client, dataset) {
         rankingString: placeInfo.ranking,
 
         subcategory: placeInfo.subcategory && placeInfo.subcategory.map(subcategory => subcategory.key),
-        //establishment_types: placeInfo.establishment_types && placeInfo.establishment_types.map(establishment_types => establishment_types.name),
+        establishment_types: placeInfo.establishment_types && placeInfo.establishment_types.map(establishment_types => establishment_types.name),
         photoCount: placeInfo.photo_count,
         dishes: placeInfo.dishes && placeInfo.dishes.map(dishes => dishes.name),
         street: placeInfo.address_obj.street1,

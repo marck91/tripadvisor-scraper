@@ -17,6 +17,26 @@ function getHours(placeInfo) {
     return placeInfo.hours.week_ranges.map(wR => wR.map(day => ({ open: day.open_time, close: day.close_time })));
 }
 
+function getAncestor(placeInfo, ancestorKey) {
+    const placeHolder = '';
+
+    if (!placeInfo.ancestors) {
+        return placeHolder;
+    }
+
+    if (!placeInfo.ancestors[0]) {
+        return placeHolder;
+    }
+
+    for (let i = 0; i <= (placeInfo.ancestors.length - 1); i ++) {
+        if(placeInfo.ancestors[i]['subcategory'][0]['key'] === ancestorKey){
+            return placeInfo.ancestors[i]['name'];
+        }
+    }
+
+    return placeHolder;
+}
+
 
 async function processRestaurant(placeInfo, client, dataset) {
     const { location_id: id } = placeInfo;
@@ -55,6 +75,8 @@ async function processRestaurant(placeInfo, client, dataset) {
         numberOfReviews: placeInfo.num_reviews,
         rankingDenominator: placeInfo.ranking_denominator,
         rankingString: placeInfo.ranking,
+        municipality: getAncestor(placeInfo, 'municipality'),
+        province: getAncestor(placeInfo, 'province'),
         reviews,
     };
     if (global.INCLUDE_REVIEW_TAGS) {

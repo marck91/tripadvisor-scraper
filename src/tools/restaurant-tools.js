@@ -76,7 +76,7 @@ async function processRestaurant(placeInfo, client, dataset) {
         rankingDenominator: placeInfo.ranking_denominator,
         rankingString: placeInfo.ranking,
 
-        /*subcategory: placeInfo.subcategory && placeInfo.subcategory.map(subcategory => subcategory.key),
+        //subcategory: placeInfo.subcategory && placeInfo.subcategory.map(subcategory => subcategory.key),
         //establishment_types: placeInfo.establishment_types && placeInfo.establishment_types.map(establishment_types => establishment_types.name),
         photoCount: placeInfo.photo_count,
         dishes: placeInfo.dishes && placeInfo.dishes.map(dishes => dishes.name),
@@ -87,7 +87,7 @@ async function processRestaurant(placeInfo, client, dataset) {
         province: getAncestor(placeInfo, 'province'),
         region: getAncestor(placeInfo, 'region'),
         state: placeInfo.address_obj.state,
-        country: placeInfo.address_obj.country,*/
+        country: placeInfo.address_obj.country,
         reviews,
     };
     if (global.INCLUDE_REVIEW_TAGS) {

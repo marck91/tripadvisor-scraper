@@ -4,5 +4,6 @@
 	"buildTag": "latest",
 	"env": null,
 	"template": "puppeteer_crawler",
-	"maxRequestRetries": 5
+	"maxRequestRetries": 5,
+	"handleRequestTimeoutSecs": 120
 }

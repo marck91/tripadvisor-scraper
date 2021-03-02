@@ -3,5 +3,6 @@
 	"version": "0.0",
 	"buildTag": "latest",
 	"env": null,
-	"template": "puppeteer_crawler"
+	"template": "puppeteer_crawler",
+	"maxRequestRetries": 7
 }

@@ -114,7 +114,8 @@ Apify.main(async () => {
                 return session;
             },
         },
-        handleRequestTimeoutSecs: 180,
+        handleRequestTimeoutSecs: 360,
+        maxRequestRetries: 7,
         handleRequestFunction: async ({ request, session }) => {
             const client = sessionClients[session.id] || await getClient(session);
             // await checkIp(); // Proxy check

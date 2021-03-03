@@ -50,8 +50,8 @@ Apify.main(async () => {
 
     log.info(`Received locationName(s): ${locationsFullNames.toString()}`);
 
-    for (let i = 0; i <= (locationsFullNames.length - 1); i ++) {
-        const locationFullName = locationsFullNames[i];
+    for (let iteration = 0; iteration <= (locationsFullNames.length - 1); iteration ++) {
+        const locationFullName = locationsFullNames[iteration];
 
         log.debug('Received input', input);
         global.INCLUDE_REVIEWS = includeReviews;
@@ -121,7 +121,7 @@ Apify.main(async () => {
                     return session;
                 },
             },
-            handleRequestTimeoutSecs: 300,
+            handleRequestTimeoutSecs: 180,
             maxRequestRetries: 7,
             handlePageTimeoutSecs: 300,
             handleRequestFunction: async ({request, session}) => {
@@ -161,9 +161,9 @@ Apify.main(async () => {
                     const initialRequest = await callForRestaurantList(locationId, session);
                     const maxOffset = initialRequest.paging.total_results;
                     log.info(maxOffset, 'Number of Restaurants');
-                    log.info(`Processing restaurants with last data offset: ${maxOffset}`);
+                    log.info(`[${iteration+1}/${locationsFullNames.length}] [${locationFullName}] Processing restaurants with last data offset: ${maxOffset}`);
                     for (let i = 0; i <= maxOffset; i += LIMIT) {
-                        log.info(`Adding restaurants search page with offset: ${i} to list`);
+                        log.info(`[${iteration+1}/${locationsFullNames.length}] [${locationFullName}] Adding restaurants search page with offset: ${i} to list`);
 
                         promises.push(() => requestQueue.addRequest({
                             url: buildRestaurantUrl(locationId, i.toString()),
@@ -173,7 +173,7 @@ Apify.main(async () => {
                     await randomDelay();
                     await resolveInBatches(promises);
                 } else if (request.userData.restaurantList) {
-                    log.info(`Processing restaurant list with offset ${request.userData.offset}`);
+                    log.info(`[${iteration+1}/${locationsFullNames.length}] [${locationFullName}] Processing restaurant list with offset ${request.userData.offset}`);
                     const restaurantList = await callForRestaurantList(locationId, session, request.userData.limit, request.userData.offset);
                     await resolveInBatches(restaurantList.data.map((restaurant) => {
                         log.debug(`Processing restaurant: ${restaurant.name}`);
@@ -211,7 +211,7 @@ Apify.main(async () => {
         });
         // Run the crawler and wait for it to finish.
         await crawler.run();
-        log.info(`Requests failed: ${error}`);
+        log.info(`[${iteration+1}/${locationsFullNames.length}] [${locationFullName}] Requests failed: ${error}`);
 
         log.info(`Crawler finished ${locationFullName}.`);
     }

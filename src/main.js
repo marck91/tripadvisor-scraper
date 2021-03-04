@@ -48,7 +48,7 @@ Apify.main(async () => {
 
     const locationsFullNames = locationFullName.split("|");
 
-    log.setOptions({maxStringLength:10000})
+    log.setOptions({maxStringLength:10000});
 
     log.info(`Received locationName(s): ${locationsFullNames.toString()}`);
 

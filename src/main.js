@@ -181,7 +181,7 @@ Apify.main(async () => {
                         log.debug(`Processing restaurant: ${restaurant.name}`);
                         log.setOptions({maxStringLength:10000, maxDepth: 10});
                         log.info(`Get log options:`, log.getOptions());
-                        log.info(`Processing restaurant6: `, restaurant);
+                        log.info(`Processing restaurant6: `, {id: restaurant.location_id, dish1: restaurant.dishes, dish2:restaurant['dishes'], ph1: restaurant.photo_count, ph2: restaurant['photo_count']});
                         return () => processRestaurant(restaurant, client, generalDataset);
                     }));
                 } else if (request.userData.restaurantDetail) {

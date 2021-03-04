@@ -51,10 +51,10 @@ async function processRestaurant(placeInfo, client, dataset) {
     if (!placeInfo) {
         return;
     }
-    log.setOptions({maxStringLength:10000, maxDepth: 10, logger: log.LoggerJson});
-    log.info(`Get log options:`, log.getOptions());
-    log.info(`Processing restaurant-tool3:`, placeInfo);
-    log.setOptions({maxStringLength:10000, maxDepth: 10, logger: log.LoggerText});
+    //log.setOptions({maxStringLength:10000, maxDepth: 10, logger: log.LoggerJson});
+    //log.info(`Get log options:`, log.getOptions());
+    //log.info(`Processing restaurant-tool3:`, placeInfo);
+    //log.setOptions({maxStringLength:10000, maxDepth: 10, logger: log.LoggerText});
     //log.setOptions({maxStringLength:10000, maxDepth: 10, logger: log.LoggerText});
     const place = {
         id: placeInfo.location_id,

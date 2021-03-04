@@ -180,6 +180,7 @@ Apify.main(async () => {
                     await resolveInBatches(restaurantList.data.map((restaurant) => {
                         log.debug(`Processing restaurant: ${restaurant.name}`);
                         log.setOptions({maxStringLength:10000, maxDepth: 10});
+                        log.info(`Get log options:`, log.getOptions());
                         log.info(`Processing restaurant6: `, restaurant);
                         return () => processRestaurant(restaurant, client, generalDataset);
                     }));

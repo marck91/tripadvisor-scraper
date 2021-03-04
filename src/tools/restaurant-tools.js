@@ -78,7 +78,7 @@ async function processRestaurant(placeInfo, client, dataset) {
 
         subcategory: placeInfo.subcategory && placeInfo.subcategory.map(subcategory => subcategory.key),
         establishment_types: placeInfo.establishment_types && placeInfo.establishment_types.map(establishment_types => establishment_types.name),
-        photoCount: placeInfo.photo_count,
+        photo_count: placeInfo.photo_count,
         dishes: placeInfo.dishes && placeInfo.dishes.map(dishes => dishes.name),
         street: placeInfo.address_obj.street1,
         municipality: getAncestor(placeInfo, 'municipality'),

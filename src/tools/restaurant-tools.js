@@ -51,6 +51,7 @@ async function processRestaurant(placeInfo, client, dataset) {
     if (!placeInfo) {
         return;
     }
+    log.info(`Processing restaurant-tool: ${placeInfo}`, placeInfo);
     const place = {
         id: placeInfo.location_id,
         type: 'RESTAURANT',

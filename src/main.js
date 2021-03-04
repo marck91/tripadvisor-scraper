@@ -181,8 +181,9 @@ Apify.main(async () => {
                         log.debug(`Processing restaurant: ${restaurant.name}`);
                         log.setOptions({maxStringLength:10000, maxDepth: 10});
                         log.info(`Get log options:`, log.getOptions());
-                        log.info(`Processing restaurant6: `, {id: restaurant.location_id, dish1: restaurant.dishes, dish2:restaurant['dishes'], ph1: restaurant.photo_count, ph2: restaurant['photo_count']});
-                        return () => processRestaurant(restaurant, client, generalDataset);
+                        log.info(`Processing restaurant7: `, {id: restaurant.location_id, dish1: restaurant.dishes, dish2:restaurant['dishes'], ph1: restaurant.photo_count, ph2: restaurant['photo_count']});
+                        //return () => processRestaurant(restaurant, client, generalDataset);
+                        return () => processRestaurant(getPlaceInformation(restaurant.location_id, session), client, generalDataset);
                     }));
                 } else if (request.userData.restaurantDetail) {
                     // For API usage only gets restaurantId from input and sets OUTPUT.json to key-value store

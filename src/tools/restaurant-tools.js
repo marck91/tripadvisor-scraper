@@ -94,6 +94,8 @@ async function processRestaurant(placeInfo, client, dataset) {
         state: placeInfo.address_obj.state,
         country: placeInfo.address_obj.country,
         reviews,
+
+        data_call: JSON.stringify(placeInfo),
     };
     if (global.INCLUDE_REVIEW_TAGS) {
         place.reviewTags = await getReviewTags(id);

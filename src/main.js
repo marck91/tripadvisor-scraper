@@ -177,7 +177,7 @@ Apify.main(async () => {
                     const restaurantList = await callForRestaurantList(locationId, session, request.userData.limit, request.userData.offset);
                     await resolveInBatches(restaurantList.data.map((restaurant) => {
                         log.debug(`Processing restaurant: ${restaurant.name}`);
-                        log.info(processRestaurant(restaurant, client, generalDataset));
+                        log.info(JSON.stringify(processRestaurant(restaurant, client, generalDataset), null, 4));
                         return () => processRestaurant(restaurant, client, generalDataset);
                     }));
                 } else if (request.userData.restaurantDetail) {

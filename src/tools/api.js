@@ -99,7 +99,7 @@ async function getPlaceInformation(placeId, session) {
         { headers: { 'X-TripAdvisor-API-Key': API_KEY, Cookie: session.getCookieString(url) }, ...getAgentOptions(session) },
     );
     session.setCookiesFromResponse({ headers: response.headers, url });
-    log.info('Processing restaurant2:', response.data);
+
     return response.data;
 }
 

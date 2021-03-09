@@ -151,7 +151,10 @@ async function getReviewTagsForLocation(locationId, session, limit = LIMIT, offs
 }
 
 async function callForRestaurantList(locationId, session, limit = LIMIT, offset = 0) {
-    const url = `https://api.tripadvisor.com/api/internal/1.14/location/${locationId}/restaurants?currency=CZK&lang=${global.LANGUAGE}&limit=${limit}&offset=${offset}`;
+    //const url = `https://api.tripadvisor.com/api/internal/1.14/location/${locationId}/restaurants?currency=CZK&lang=${global.LANGUAGE}&limit=${limit}&offset=${offset}`;
+    //Solo combined_food Gelato o IceCream
+    const url = `https://api.tripadvisor.com/api/internal/1.14/location/${locationId}/restaurants?currency=CZK&lang=${global.LANGUAGE}&limit=${limit}&offset=${offset}&combined_food=9899%2C20533`;
+
     const response = await axios.get(
         url,
         { headers: { 'X-TripAdvisor-API-Key': API_KEY, Cookie: session.getCookieString(url) }, ...getAgentOptions(session) },

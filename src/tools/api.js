@@ -104,7 +104,9 @@ async function getPlaceInformation(placeId, session) {
 }
 
 function buildRestaurantUrl(locationId, offset) {
-    return `https://www.tripadvisor.com/RestaurantSearch?Action=PAGE&geo=${locationId}&ajax=1&sortOrder=relevance&${offset ? `o=a${offset}` : ''}&availSearchEnabled=false`;
+    //return `https://www.tripadvisor.com/RestaurantSearch?Action=PAGE&geo=${locationId}&ajax=1&sortOrder=relevance&${offset ? `o=a${offset}` : ''}&availSearchEnabled=false`;
+    //Filtro per tutte le sottocategorie e piatti Gelato
+    return `https://www.tripadvisor.com/RestaurantSearch?Action=FILTER&geo=${locationId}&ajax=1&sortOrder=relevance&${offset ? `o=a${offset}` : ''}&availSearchEnabled=false&itags=10591%2C16556%2C9909%2C9900%2C9901%2C11776%2C16548&zfd=9899%2C20533&ajax=1`;
 }
 
 function buildHotelUrl(locationId, offset) {
